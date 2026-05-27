@@ -1,0 +1,31 @@
+# VSDSquadronFM.pcf
+
+# Clock
+
+set_io CLK        25
+
+# Reset
+
+set_io RESET      23
+
+# LEDs
+
+set_io LEDS[0]    39
+set_io LEDS[1]    40
+set_io LEDS[2]    41
+set_io LEDS[3]    28
+set_io LEDS[4]    32
+
+# UART
+
+set_io TXD        9
+set_io RXD        10
+
+# JTAG
+
+set_io TCK        11
+set_io TMS        12
+set_io TDI        13
+set_io TDO        18
+set_io TRST_N     19
+
