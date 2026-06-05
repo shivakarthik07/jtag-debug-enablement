@@ -1,7 +1,5 @@
 
-# JTAG Debug Interface — VSDSquadron RISC-V Integration
-
-> **Task 2 Deliverable** — JTAG-based halt, resume, status, and PC read debug interface added to the VSDSquadron RISC-V SoC.
+# JTAG Debug Interface - JTAG-based halt, resume, status, and PC read debug interface added to the VSDSquadron RISC-V SoC.
 
 ---
 
