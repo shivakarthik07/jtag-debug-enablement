@@ -41,6 +41,7 @@ Without a debug interface, the only way to observe a running RISC-V core is thro
 ---
 
 ## 2. How the Debug Interface Works
+<img width="636" height="324" alt="image" src="https://github.com/user-attachments/assets/dc99aa2b-38cd-4bf5-8514-fd8e13a285d2" />
 
 ### New JTAG Instructions
 
