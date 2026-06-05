@@ -193,16 +193,7 @@ The VCD dump is written to `jtag_debug.vcd` and captures the full design hierarc
 
 ---
 
-## 5. Known Limitations
-
-| Issue | Severity | Details |
-|---|---|---|
-| STATUS shift register | Minor | `dbg_status_shift` has no SHIFT_DR advance branch. The captured bit persists on TDO throughout the shift window, so a single-bit read works correctly, but the implementation deviates from the IEEE 1149.1 shift protocol. |
-| PC shift feeds zero not TDI | Minor | The PC shift register feeds a hardcoded `0` rather than TDI on each shift cycle. Harmless for read-only access; would need fixing if PC write-back were ever added. |
-| Single clock domain crossing | Minor | `debug_halt_req` crosses from the TCK domain to the system clock domain via a hold counter only. A proper two-flop CDC synchroniser should replace this for silicon tape-out. |
-| Simultaneous halt and resume | Minor | If hold counters for both requests overlap, the processor prioritises resume over halt. The priority order is safe but should be tested explicitly. |
-| No register file access | Informational | Only PC and halted status are readable. General-purpose registers x0–x31 are not yet exposed over JTAG. |
-| No hardware breakpoints | Informational | Halting is software-initiated only; there is no address-match comparator for automatic breakpoints. |
+## 5.
 
 ---
 
