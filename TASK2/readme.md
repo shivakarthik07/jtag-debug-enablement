@@ -148,32 +148,45 @@ The testbench performs eleven sequential checks. All pass; the final output is `
 **Steps 1–2 — Core starts running, PC advances**
 
 After TRST_N is released and 50 core cycles elapse, `debug_pc` is sampled twice 50 cycles apart. The two values differ, confirming the core is fetching and executing instructions.
+<img width="1584" height="301" alt="pc_ir_1" src="https://github.com/user-attachments/assets/df37c0ee-48e1-49d2-baa5-7f114d73ef0d" />
+<img width="1473" height="311" alt="pc_ir_2" src="https://github.com/user-attachments/assets/8cb840a2-3173-42c4-9d52-b449487aada8" />
 
 **Step 3 — JTAG sends HALT**
 
 The TAP navigates to SHIFT_DR with `ir_reg = DEBUG_CTRL`. Three bits are shifted in LSB-first to place `3'b100` into the shift register. On UPDATE_DR, `debug_halt_req` goes high and the hold counter is loaded to 12.
+<img width="1530" height="306" alt="halt" src="https://github.com/user-attachments/assets/bc38621d-9ee4-493d-ae9a-193422b765e5" />
+
 
 **Steps 4–5 — Core enters halted state, PC freezes**
 
 Within 200 core clock cycles of the halt request, `debug_halted` goes high and `debug_pc` stops changing. The testbench captures `expected_pc` at the moment `debug_halted` is seen, waits 20 more cycles, and confirms `debug_pc` still equals `expected_pc`.
+<img width="725" height="397" alt="halt_terminal" src="https://github.com/user-attachments/assets/36cb5b5e-a522-44a3-8889-d693df21dc26" />
+
 
 **Step 6 — JTAG reads STATUS = 1**
 
 The DEBUG_STATUS instruction is loaded. One DR scan cycle captures `debug_halted = 1` and shifts it out on TDO. The assertion `status_bit == 1` passes.
+<img width="697" height="190" alt="status_read_terminal" src="https://github.com/user-attachments/assets/4d315af1-e784-4896-bc65-14b4b8402162" />
+
 
 **Step 7 — JTAG reads frozen PC**
 
 The DEBUG_PC instruction is loaded. One 32-bit DR scan captures the frozen `debug_pc` and shifts it out LSB-first. The assembled value is compared against `expected_pc`. Values match.
+<img width="604" height="388" alt="frozen_pc_Read" src="https://github.com/user-attachments/assets/b85a9ebf-0a01-4e7c-8c7d-4cf6f1b81de4" />
 
-**Step 8 — JTAG sends RESUME**
+
+**Step 8 — JTAG sends RESUME , Core restarts, PC advances again**
 
 `jtag_write_ctrl(3'b010)` asserts `debug_resume_req`. The processor samples it on the next system clock edge and clears `halted`.
-
-**Steps 9–10 — Core restarts, PC advances again**
+<img width="1530" height="306" alt="resume" src="https://github.com/user-attachments/assets/fd37e76a-0964-4de1-9fac-055e5adf5a4c" />
 
 `wait_for_running(200)` confirms `debug_halted` goes low. Two PC samples 50 cycles apart are taken; they differ, proving the state machine is executing instructions again.
 
-**Step 11 — PASS printed**
+**Step 9 — PASS printed**
+
+<img width="694" height="859" alt="selfchecking_testbench_operation_completion" src="https://github.com/user-attachments/assets/0805ea20-5e0d-429b-9d6f-44f724e8eb00" />
+<img width="1588" height="300" alt="Screenshot from 2026-06-05 21-32-51" src="https://github.com/user-attachments/assets/20b1becd-164b-4156-aff7-0187abd389c6" />
+
 
 ### Waveform Signal Reference
 
