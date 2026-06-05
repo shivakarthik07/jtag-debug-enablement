@@ -1,7 +1,6 @@
 
 # JTAG Debug Interface - JTAG-based halt, resume, status, and PC read debug interface added to the VSDSquadron RISC-V SoC.
 
----
 
 ## Table of Contents
 
