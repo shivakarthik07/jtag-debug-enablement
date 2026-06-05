@@ -10,6 +10,7 @@
 4. [Simulation Results](#4-simulation-results)
 5. [File Structure](#5-file-structure)
 
+
 ---
 
 ## 1. Introduction to JTAG Debug
@@ -208,6 +209,8 @@ The VCD dump is written to `jtag_debug.vcd` and captures the full design hierarc
 ├── tb_jtag_debug.v     # Self-checking testbench — 11-step halt/resume/PC sequence
 └── jtag_debug.vcd      # Simulation waveform output (GTKWave compatible)
 ```
+
+
 
 
 
