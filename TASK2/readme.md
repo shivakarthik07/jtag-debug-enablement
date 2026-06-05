@@ -16,15 +16,16 @@
 ---
 
 ## 1. Introduction to JTAG Debug
-
-JTAG (Joint Test Action Group, IEEE 1149.1) is the industry-standard four-wire interface for chip testing and in-system programming. Task 1 added the foundational TAP controller with IDCODE and BYPASS instructions. **Task 2 extends it into a functional debug interface**, allowing an external host to:
-
+JTAG is the four-wire interface for chip testing and in-system programming.It has foundational TAP controller with IDCODE and BYPASS instructions. **extended it into a functional debug interface**, allowing an external host to:
 - **Halt** the RISC-V core mid-execution
 - **Resume** execution from the frozen state
 - **Read the program counter** of the halted core
 - **Read the halted/running status** of the core
+- **This is the first step toward full GDB-level debugging via OpenOCD. The same four JTAG pins (TCK, TMS, TDI, TDO) are used — no new wires are required on the board**.
+---
+<img width="1024" height="559" alt="image" src="https://github.com/user-attachments/assets/02bd0004-a2e3-4257-bf89-9d56cbc7dc0d" />
 
-This is the first step toward full GDB-level debugging via OpenOCD. The same four JTAG pins (TCK, TMS, TDI, TDO) are used — no new wires are required on the board.
+---
 
 ### What Problem Does This Solve?
 
@@ -91,21 +92,9 @@ Reading the 32-bit program counter follows the standard JTAG DR scan path. The D
 
 ## 3. Implementation Details
 
-### File Structure
-
-```
-.
-├── soc.v               # Top-level SOC: Processor + Memory + UART + JTAG
-├── jtag_tap.v          # TAP controller with debug instructions (extended)
-├── clockworks.v        # Clock/reset management (FPGA only, unchanged)
-├── emitter_uart.v      # UART transmitter (unchanged)
-├── firmware.hex        # Program loaded into RAM at startup
-└── tb_jtag_debug.v     # Self-checking simulation testbench
-```
-
 ### 3.1 `jtag_tap.v` — Extended TAP Controller
 
-The TAP module interface gains five new ports compared to Task 1 — three outbound request signals driven toward the processor, and two inbound status signals read back from it. The existing 16-state FSM, IR path, IDCODE register, BYPASS register, and falling-edge TDO drive are all unchanged.
+The TAP module interface gains five new ports ,three outbound request signals driven toward the processor, and two inbound status signals read back from it. The existing 16-state FSM, IR path, IDCODE register, BYPASS register, and falling-edge TDO drive are all unchanged.
 
 **DEBUG_CTRL register** — a 3-bit shift register captures the host command on SHIFT_DR. On UPDATE_DR the value is latched into an active register and a 4-bit hold counter is loaded to 12. Each of the three request outputs is driven high either on the UPDATE_DR pulse itself or for as long as the hold counter is non-zero, whichever is longer. This ensures the system clock domain has ample time to see the request regardless of the TCK-to-system-clock frequency ratio.
 
