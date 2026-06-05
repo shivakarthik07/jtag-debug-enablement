@@ -9,7 +9,7 @@
 3. [Implementation Details](#3-implementation-details)
 4. [Simulation Results](#4-simulation-results)
 5. [File Structure](#5-file-structure)
-
+6. [Synthesis](#6-Synthesis)
 
 ---
 
@@ -210,6 +210,8 @@ The VCD dump is written to `jtag_debug.vcd` and captures the full design hierarc
 └── jtag_debug.vcd      # Simulation waveform output (GTKWave compatible)
 ```
 
+## 6. Synthesis
+<img width="587" height="541" alt="synthesis_prop" src="https://github.com/user-attachments/assets/b3aeb407-ab11-48a9-b3c5-28276b96606b" />
 
 
 
