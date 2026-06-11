@@ -1,0 +1,10 @@
+# VSDSquadronFM.pcf
+# JTAG
+set_io tck   11
+set_io tms   12
+set_io tdi   13
+set_io tdo   18
+set_io trst  19
+
+# LED
+set_io led   39
