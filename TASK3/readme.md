@@ -190,6 +190,7 @@ The binary begins with the standard iCE40 preamble `FF FF FF FF 7E AA 99 7E`, co
 
 output:
 <img width="961" height="351" alt="bitstreamgeneration" src="https://github.com/user-attachments/assets/e493144b-d419-4621-bab4-b917f3856cd2" />
+<img width="700" height="1600" alt="WhatsApp Image 2026-06-12 at 00 24 09" src="https://github.com/user-attachments/assets/72c85ed7-f160-4904-b315-63723a323529" />
 
 
 ## 8. Build Flow
