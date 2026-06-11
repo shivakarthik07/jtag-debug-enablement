@@ -90,6 +90,8 @@ Bit 0 is always `1` as mandated by the standard. The value is hardcoded in the `
 
 ### `VSDSquadronFM.pcf`
 
+<img width="211" height="266" alt="Screenshot from 2026-06-12 00-17-32" src="https://github.com/user-attachments/assets/d149d1cd-6e10-4b78-bc57-da5a396c2170" />
+
 
 All six signals are constrained to physical pads on the iCE40UP5K SG48 package. nextpnr confirmed each constraint was accepted without conflict.
 
@@ -154,6 +156,7 @@ The TAP occupies only **1% of the logic cells**, leaving the remaining 99% free 
 
 Timing was analysed with **icetime** against the iCE40UP5K model.
 
+<img width="1238" height="799" alt="Screenshot from 2026-06-11 20-59-32" src="https://github.com/user-attachments/assets/21d83d50-9742-40d9-8797-c482ee27de01" />
 
 ### Critical Path
 
@@ -271,7 +274,7 @@ IDCODE read = 0x81262776
 TASK 3A PASSED — IDCODE matches expected 0x81262776
 ```
 
-### 9.5 Current Status
+### 9.4Current Status
 
 | Step | Status | Notes |
 |---|---|---|
@@ -287,7 +290,7 @@ TASK 3A PASSED — IDCODE matches expected 0x81262776
 
 Physical IDCODE readback is pending due to unavailability of a 3.3 V JTAG adapter at the time of submission. All digital deliverables — RTL, constraints, build logs, bitstream, and OpenOCD config — are complete and ready for immediate hardware validation once an adapter is available.
 
-### 9.6 Troubleshooting Guide
+### 9.5 Troubleshooting Guide
 
 | Symptom | Likely Cause | Fix |
 |---|---|---|
